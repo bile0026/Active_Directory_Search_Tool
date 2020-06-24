@@ -192,7 +192,7 @@ function userSearch {
         }
         else {
             $resultsTextBox.SelectionBackColor = "Yellow"
-            $resultsTextBox.AppendText("User not found, please try again...")
+            $resultsTextBox.AppendText("User with name containing " + $userSearchTextBox.Text + "not found, please try again...")
             $resultsTextBox.AppendText("`r`n")
             $resultsTextBox.SelectionBackColor = "White"
         }
@@ -214,101 +214,110 @@ function employeeIDSearch {
         $resultsTextBox.AppendText("`r`n")
         $searchText = $employeeIDSearchTextBox.Text
         $empuserInfo = Get-ADUser -Filter 'employeeID -eq $searchText'
-        $searchText2 = $empuserInfo.samAccountName
-        $userInfo = Get-ADUser -Filter 'samAccountName -like $searchText2' -Properties *
 
-        if(($userInfo | measure ).Count -gt 0) {
-            foreach($user in $userInfo) {
+        if((empuserInfo | measure ).Count -gt 0) {
+            $searchText2 = $empuserInfo.samAccountName
+            $userInfo = Get-ADUser -Filter 'samAccountName -like $searchText2' -Properties *
 
-                $resultsTextBox.SelectionBackColor = "Green"
-                $resultsTextBox.AppendText("Found user...")
+            if(($userInfo | measure ).Count -gt 0) {
+                foreach($user in $userInfo) {
+
+                    $resultsTextBox.SelectionBackColor = "Green"
+                    $resultsTextBox.AppendText("Found user...")
+                    $resultsTextBox.AppendText("`r`n")
+                    $resultsTextBox.SelectionBackColor = "White"
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("User: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.Name)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Username: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.samAccountName)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Department/Title: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.Department + "/" + $user.Title)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Employee ID: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.EmployeeID)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Email address: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.mail)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Mobile Phone: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.mobile + "/" + $user.mobilePhone)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Office Phone: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.officePhone)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Manager: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.Manager)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Distinguished Name: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.distinguishedName)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Password Expired: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.PasswordExpired)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Last Bad Password Attempt: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.LastBadPasswordAttempt)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Last Logon Date: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.LastLogonDate)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Account Locked Out? ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.LockedOut)
+                    $resultsTextBox.AppendText("`r`n")
+                    $resultsTextBox.AppendText("`r`n")
+                    $resultsTextBox.Refresh()
+                }
+            }
+            else {
+                $resultsTextBox.SelectionBackColor = "Yellow"
+                $resultsTextBox.AppendText("User not found, please try again...")
                 $resultsTextBox.AppendText("`r`n")
                 $resultsTextBox.SelectionBackColor = "White"
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("User: ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.Name)
-                $resultsTextBox.AppendText("`r`n")
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("Username: ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.samAccountName)
-                $resultsTextBox.AppendText("`r`n")
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("Department/Title: ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.Department + "/" + $user.Title)
-                $resultsTextBox.AppendText("`r`n")
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("Employee ID: ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.EmployeeID)
-                $resultsTextBox.AppendText("`r`n")
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("Email address: ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.mail)
-                $resultsTextBox.AppendText("`r`n")
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("Mobile Phone: ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.mobile + "/" + $user.mobilePhone)
-                $resultsTextBox.AppendText("`r`n")
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("Office Phone: ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.officePhone)
-                $resultsTextBox.AppendText("`r`n")
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("Manager: ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.Manager)
-                $resultsTextBox.AppendText("`r`n")
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("Distinguished Name: ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.distinguishedName)
-                $resultsTextBox.AppendText("`r`n")
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("Password Expired: ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.PasswordExpired)
-                $resultsTextBox.AppendText("`r`n")
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("Last Bad Password Attempt: ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.LastBadPasswordAttempt)
-                $resultsTextBox.AppendText("`r`n")
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("Last Logon Date: ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.LastLogonDate)
-                $resultsTextBox.AppendText("`r`n")
-
-                $resultsTextBox.SelectionColor = "DarkGreen"
-                $resultsTextBox.AppendText("Account Locked Out? ")
-                $resultsTextBox.SelectionColor = "Black"
-                $resultsTextBox.AppendText($user.LockedOut)
-                $resultsTextBox.AppendText("`r`n")
-                $resultsTextBox.AppendText("`r`n")
-                $resultsTextBox.Refresh()
             }
         }
         else {
             $resultsTextBox.SelectionBackColor = "Yellow"
-            $resultsTextBox.AppendText("User not found, please try again...")
+            $resultsTextBox.AppendText("Employee ID not found, please try again...")
             $resultsTextBox.AppendText("`r`n")
             $resultsTextBox.SelectionBackColor = "White"
         }
