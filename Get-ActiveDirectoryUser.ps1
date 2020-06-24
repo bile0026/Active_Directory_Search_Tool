@@ -102,6 +102,7 @@ function userSearch {
         $userInfo = Get-ADUser -Filter 'Name -like $searchText' -Properties *
 
         if(($userInfo | measure ).Count -gt 0) {
+            $Label1.Text = "Found " + ($userInfo | measure ).Count + " results"
             foreach($user in $userInfo) {
 
                 $resultsTextBox.SelectionBackColor = "Green"
@@ -195,6 +196,7 @@ function userSearch {
             $resultsTextBox.AppendText("User with name containing " + $userSearchTextBox.Text + " not found, please try again...")
             $resultsTextBox.AppendText("`r`n")
             $resultsTextBox.SelectionBackColor = "White"
+            $Label1.Text = "Found " + ($userInfo | measure ).Count + " results"
         }
     }
     catch {
@@ -218,6 +220,7 @@ function employeeIDSearch {
         if(($empuserInfo | measure ).Count -gt 0) {
             $searchText2 = $empuserInfo.samAccountName
             $userInfo = Get-ADUser -Filter 'samAccountName -like $searchText2' -Properties *
+            $Label1.Text = "Found " + ($empuserInfo | measure ).Count + " results"
 
             if(($userInfo | measure ).Count -gt 0) {
                 foreach($user in $userInfo) {
@@ -313,6 +316,7 @@ function employeeIDSearch {
                 $resultsTextBox.AppendText("User not found, please try again...")
                 $resultsTextBox.AppendText("`r`n")
                 $resultsTextBox.SelectionBackColor = "White"
+                $Label1.Text = "Found " + ($empuserInfo | measure ).Count + " results"
             }
         }
         else {
@@ -320,6 +324,7 @@ function employeeIDSearch {
             $resultsTextBox.AppendText("Employee ID " + $employeeIDSearchTextBox.Text + " not found, please try again...")
             $resultsTextBox.AppendText("`r`n")
             $resultsTextBox.SelectionBackColor = "White"
+            $Label1.Text = "Found " + ($empuserInfo | measure ).Count + " results"
         }
     }
     catch {
