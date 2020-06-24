@@ -103,23 +103,59 @@ function userSearch {
             $resultsTextBox.SelectionColor = "Black"
             $resultsTextBox.AppendText($user.Name)
             $resultsTextBox.AppendText("`r`n")
-            $resultsTextBox.AppendText("Username: " + $user.samAccountname)
+
+            $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("Username: ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.samAccountName)
             $resultsTextBox.AppendText("`r`n")
-            $resultsTextBox.AppendText("Department/Title: " + $user.Department + "/" + $user.Description)
+
+            $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("Department/Title: ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.Department + "/" + $user.Description)
             $resultsTextBox.AppendText("`r`n")
-            $resultsTextBox.AppendText("Employee ID: " + $user.EmployeeID)
+
+            $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("Employee ID: ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.EmployeeID)
             $resultsTextBox.AppendText("`r`n")
-            $resultsTextBox.AppendText("Email address: " + $user.mail)
+
+            $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("Email address: ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.mail)
             $resultsTextBox.AppendText("`r`n")
-            $resultsTextBox.AppendText("Manager: " + $user.Manager)
+
+            $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("Manager: ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.Manager)
             $resultsTextBox.AppendText("`r`n")
-            $resultsTextBox.AppendText("Distinguished Name: " + $user.distinguishedName)
+
+            $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("Distinguished Name: ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.distinguishedName)
             $resultsTextBox.AppendText("`r`n")
-            $resultsTextBox.AppendText("Last Bad Password Attempt: " + $user.LastBadPasswordAttempt)
+
+            $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("Last Bad Password Attempt: ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.LastBadPasswordAttempt)
             $resultsTextBox.AppendText("`r`n")
-            $resultsTextBox.AppendText("Last Logon Date: " + $user.LastLogonDate)
+
+            $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("Last Logon Date: ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.LastLogonDate)
             $resultsTextBox.AppendText("`r`n")
-            $resultsTextBox.AppendText("Account Locked Out? " + $user.LockedOut)
+
+            $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("Account Locked Out? ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.LockedOut)
             $resultsTextBox.AppendText("`r`n")
             $resultsTextBox.AppendText("`r`n")
             $resultsTextBox.Refresh()
