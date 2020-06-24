@@ -113,7 +113,7 @@ function userSearch {
             $resultsTextBox.SelectionColor = "DarkGreen"
             $resultsTextBox.AppendText("Department/Title: ")
             $resultsTextBox.SelectionColor = "Black"
-            $resultsTextBox.AppendText($user.Department + "/" + $user.Description)
+            $resultsTextBox.AppendText($user.Department + "/" + $user.Title)
             $resultsTextBox.AppendText("`r`n")
 
             $resultsTextBox.SelectionColor = "DarkGreen"
