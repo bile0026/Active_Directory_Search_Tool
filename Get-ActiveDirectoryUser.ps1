@@ -94,8 +94,8 @@ function userSearch {
     try {
         $resultsTextBox.Clear()
         $resultsTextBox.Refresh()
-        $userInfo = Get-ADUser -Filter "Name -like '*biles*'" -Properties * | Sort-Object -Descending -Property surname
-        #Write-Host $userinfo
+        $searchText = "*" + $userSearchTextBox.Text + "*"
+        $userInfo = Get-ADUser -Filter 'Name -like $searchText' -Properties * | Sort-Object -Descending -Property surname
 
         foreach($user in $userInfo) {
             $resultsTextBox.SelectionColor = "DarkGreen"
