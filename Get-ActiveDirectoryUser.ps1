@@ -129,6 +129,18 @@ function userSearch {
             $resultsTextBox.AppendText("`r`n")
 
             $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("Mobile Phone: ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.mobile + "/" + $user.mobilePhone)
+            $resultsTextBox.AppendText("`r`n")
+
+            $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("Office Phone: ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.officePhone)
+            $resultsTextBox.AppendText("`r`n")
+
+            $resultsTextBox.SelectionColor = "DarkGreen"
             $resultsTextBox.AppendText("Manager: ")
             $resultsTextBox.SelectionColor = "Black"
             $resultsTextBox.AppendText($user.Manager)
@@ -138,6 +150,12 @@ function userSearch {
             $resultsTextBox.AppendText("Distinguished Name: ")
             $resultsTextBox.SelectionColor = "Black"
             $resultsTextBox.AppendText($user.distinguishedName)
+            $resultsTextBox.AppendText("`r`n")
+
+            $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("Password Expired: ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.PasswordExpired)
             $resultsTextBox.AppendText("`r`n")
 
             $resultsTextBox.SelectionColor = "DarkGreen"
