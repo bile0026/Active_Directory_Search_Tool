@@ -105,6 +105,7 @@ function userSearch {
 
             $resultsTextBox.SelectionBackColor = "Green"
             $resultsTextBox.AppendText("Found user...")
+            $resultsTextBox.AppendText("`r`n")
             $resultsTextBox.SelectionBackColor = "White"
 
             $resultsTextBox.SelectionColor = "DarkGreen"
@@ -212,6 +213,7 @@ function employeeIDSearch {
 
             $resultsTextBox.SelectionBackColor = "Green"
             $resultsTextBox.AppendText("Found user...")
+            $resultsTextBox.AppendText("`r`n")
             $resultsTextBox.SelectionBackColor = "White"
 
             $resultsTextBox.SelectionColor = "DarkGreen"
