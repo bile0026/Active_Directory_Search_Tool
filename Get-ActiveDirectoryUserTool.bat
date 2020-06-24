@@ -1,0 +1,1 @@
+CMD powershell.exe -F Get-ActiveDirectoryUser.ps1
