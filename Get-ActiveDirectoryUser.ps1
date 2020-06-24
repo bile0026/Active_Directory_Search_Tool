@@ -11,7 +11,7 @@ $Form.ClientSize                 = '545,597'
 $Form.text                       = "Active Directory User Search"
 $Form.TopMost                    = $false
 
-$userSearchTextBox               = New-Object system.Windows.Forms.TextBox
+$userSearchTextBox               = New-Object system.Windows.Forms.RichTextBox
 $userSearchTextBox.multiline     = $false
 $userSearchTextBox.width         = 238
 $userSearchTextBox.height        = 20
@@ -41,7 +41,7 @@ $employeeIDLabel.height          = 10
 $employeeIDLabel.location        = New-Object System.Drawing.Point(13,142)
 $employeeIDLabel.Font            = 'Microsoft Sans Serif,10'
 
-$employeeIDSearchTextBox         = New-Object system.Windows.Forms.TextBox
+$employeeIDSearchTextBox         = New-Object system.Windows.Forms.RichTextBox
 $employeeIDSearchTextBox.multiline  = $false
 $employeeIDSearchTextBox.width   = 194
 $employeeIDSearchTextBox.height  = 20
@@ -70,7 +70,7 @@ $Label1.height                   = 10
 $Label1.location                 = New-Object System.Drawing.Point(15,274)
 $Label1.Font                     = 'Microsoft Sans Serif,10'
 
-$resultsTextBox                  = New-Object system.Windows.Forms.TextBox
+$resultsTextBox                  = New-Object system.Windows.Forms.RichTextBox
 $resultsTextBox.multiline        = $true
 $resultsTextBox.width            = 516
 $resultsTextBox.height           = 276
@@ -94,21 +94,36 @@ function userSearch {
     try {
         $resultsTextBox.Clear()
         $resultsTextBox.Refresh()
-        $userInfo = Get-ADUser -Filter "Name -like '*biles*'" | Sort-Object -Descending -Property surname
+        $userInfo = Get-ADUser -Filter "Name -like '*biles*'" -Properties * | Sort-Object -Descending -Property surname
         #Write-Host $userinfo
-        $resultsTextBox.AppendText("User: " + $userInfo.Name)
-        $resultsTextBox.AppendText("Username: " + $userInfo.samAccountname)
-        $resultsTextBox.AppendText("Department/Title: " + $userInfo.Department + "/" + $userInfo.Description)
-        $resultsTextBox.AppendText("Employee ID: " + $userInfo.EmployeeID)
-        $resultsTextBox.AppendText("Email address: " + $userInfo.mail)
-        $resultsTextBox.AppendText("Manager: " + $userInfo.Manager)
-        $resultsTextBox.AppendText("Distinguished Name: " + $userInfo.distinguishedName)
-        $resultsTextBox.AppendText("Last Bad Password Attempt: " + $userInfo.LastBadPasswordAttempt)
-        $resultsTextBox.AppendText("Last Logon Date: " + $userInfo.LastLogonDate)
-        $resultsTextBox.AppendText("Account Locked Out? " + $userInfo.LockedOut)
-        $resultsTextBox.AppendText(
-        $resultsTextBox.AppendText("`r`n")
-        $resultsTextBox.Refresh()
+
+        foreach($user in $userInfo) {
+            $resultsTextBox.SelectionColor = "DarkGreen"
+            $resultsTextBox.AppendText("User: ")
+            $resultsTextBox.SelectionColor = "Black"
+            $resultsTextBox.AppendText($user.Name)
+            $resultsTextBox.AppendText("`r`n")
+            $resultsTextBox.AppendText("Username: " + $user.samAccountname)
+            $resultsTextBox.AppendText("`r`n")
+            $resultsTextBox.AppendText("Department/Title: " + $user.Department + "/" + $user.Description)
+            $resultsTextBox.AppendText("`r`n")
+            $resultsTextBox.AppendText("Employee ID: " + $user.EmployeeID)
+            $resultsTextBox.AppendText("`r`n")
+            $resultsTextBox.AppendText("Email address: " + $user.mail)
+            $resultsTextBox.AppendText("`r`n")
+            $resultsTextBox.AppendText("Manager: " + $user.Manager)
+            $resultsTextBox.AppendText("`r`n")
+            $resultsTextBox.AppendText("Distinguished Name: " + $user.distinguishedName)
+            $resultsTextBox.AppendText("`r`n")
+            $resultsTextBox.AppendText("Last Bad Password Attempt: " + $user.LastBadPasswordAttempt)
+            $resultsTextBox.AppendText("`r`n")
+            $resultsTextBox.AppendText("Last Logon Date: " + $user.LastLogonDate)
+            $resultsTextBox.AppendText("`r`n")
+            $resultsTextBox.AppendText("Account Locked Out? " + $user.LockedOut)
+            $resultsTextBox.AppendText("`r`n")
+            $resultsTextBox.AppendText("`r`n")
+            $resultsTextBox.Refresh()
+        }
     }
     catch {
         $resultsTextBox.AppendText($_.Exception.Message)
