@@ -89,6 +89,7 @@ $employeeIDSearchButton.Add_Click( { employeeIDSearch } )
 
 Import-Module ".\PS_Modules\Microsoft.ActiveDirectory.Management.dll"
 Import-Module ".\PS_Modules\Microsoft.ActiveDirectory.Management.resources.dll"
+Import-Module  ".\PS_Modules\ActiveDirectory.psd1"
 
 function userSearch {
 
@@ -194,7 +195,9 @@ function employeeIDSearch {
         $resultsTextBox.Clear()
         $resultsTextBox.Refresh()
         $searchText = $employeeIDSearchTextBox.Text
-        $userInfo = Get-ADUser -Filter 'employeeID -eq $searchText' -Properties *
+        $empuserInfo = Get-ADUser -Filter 'employeeID -eq $searchText'
+        $searchText2 = $empuserInfo.samAccountName
+        $userInfo = Get-ADUser -Filter 'samAccountName -like $searchText2' -Properties *
 
         foreach($user in $userInfo) {
             $resultsTextBox.SelectionColor = "DarkGreen"
