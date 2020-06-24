@@ -96,10 +96,17 @@ function userSearch {
     try {
         $resultsTextBox.Clear()
         $resultsTextBox.Refresh()
+        $resultsTextBox.AppendText("Searching...")
+        $resultsTextBox.AppendText("`r`n")
         $searchText = "*" + $userSearchTextBox.Text + "*"
         $userInfo = Get-ADUser -Filter 'Name -like $searchText' -Properties *
 
         foreach($user in $userInfo) {
+
+            $resultsTextBox.SelectionBackColor = "Green"
+            $resultsTextBox.AppendText("Found user...")
+            $resultsTextBox.SelectionBackColor = "White"
+
             $resultsTextBox.SelectionColor = "DarkGreen"
             $resultsTextBox.AppendText("User: ")
             $resultsTextBox.SelectionColor = "Black"
@@ -194,12 +201,19 @@ function employeeIDSearch {
     try {
         $resultsTextBox.Clear()
         $resultsTextBox.Refresh()
+        $resultsTextBox.AppendText("Searching...")
+        $resultsTextBox.AppendText("`r`n")
         $searchText = $employeeIDSearchTextBox.Text
         $empuserInfo = Get-ADUser -Filter 'employeeID -eq $searchText'
         $searchText2 = $empuserInfo.samAccountName
         $userInfo = Get-ADUser -Filter 'samAccountName -like $searchText2' -Properties *
 
         foreach($user in $userInfo) {
+
+            $resultsTextBox.SelectionBackColor = "Green"
+            $resultsTextBox.AppendText("Found user...")
+            $resultsTextBox.SelectionBackColor = "White"
+
             $resultsTextBox.SelectionColor = "DarkGreen"
             $resultsTextBox.AppendText("User: ")
             $resultsTextBox.SelectionColor = "Black"
