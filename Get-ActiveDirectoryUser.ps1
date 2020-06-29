@@ -165,6 +165,12 @@ function userSearch {
                 $resultsTextBox.AppendText("`r`n")
 
                 $resultsTextBox.SelectionColor = "DarkGreen"
+                $resultsTextBox.AppendText("Account Enabled: ")
+                $resultsTextBox.SelectionColor = "Black"
+                $resultsTextBox.AppendText($user.Enabled)
+                $resultsTextBox.AppendText("`r`n")
+
+                $resultsTextBox.SelectionColor = "DarkGreen"
                 $resultsTextBox.AppendText("Password Expired: ")
                 $resultsTextBox.SelectionColor = "Black"
                 $resultsTextBox.AppendText($user.PasswordExpired)
@@ -282,6 +288,12 @@ function employeeIDSearch {
                     $resultsTextBox.AppendText("Distinguished Name: ")
                     $resultsTextBox.SelectionColor = "Black"
                     $resultsTextBox.AppendText($user.distinguishedName)
+                    $resultsTextBox.AppendText("`r`n")
+
+                    $resultsTextBox.SelectionColor = "DarkGreen"
+                    $resultsTextBox.AppendText("Account Enabled: ")
+                    $resultsTextBox.SelectionColor = "Black"
+                    $resultsTextBox.AppendText($user.Enabled)
                     $resultsTextBox.AppendText("`r`n")
 
                     $resultsTextBox.SelectionColor = "DarkGreen"
